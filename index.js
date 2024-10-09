@@ -88,7 +88,45 @@ console.log("Sum of the age: ", sum_age);
 console.log("Average age: ", average_age);
 // =================================Part 3 ====================
 console.log("============================Part3=====================");
-function modifiedAge(arr)
-{
+const person = { id: "42", name: "Bruce", occupation: "Knight", age: "41" }
     
+function modifiedAge(obj)
+{
+    // if the obj doesn't havethe age property 
+    if (!('age' in obj))
+    {
+         obj.age = 0;
+    }
+    let temp_equivalent = Number(obj.age);
+    temp_equivalent++;
+    obj.age = temp_equivalent.toString()
+    obj.updated_at = new Date(); 
+    return;
 }
+//Testing function on an obj of the array
+console.log('Before modifying the object', person);
+modifiedAge(person);
+console.log("after modification", person);
+
+// Create copy of the obj
+
+function copyObject(oldPerson)
+{
+     // if the obj doesn't havethe age property 
+     if (!('age' in oldPerson))
+        {
+             oldPerson.age = 0;
+        }
+    oldPerson.updated_at = new Date(); 
+    let jsonString = JSON.stringify(oldPerson);
+    const new_copy = JSON.parse(jsonString); 
+    let temp_equivalent = Number(new_copy.age);
+    temp_equivalent++;
+    new_copy.age = temp_equivalent.toString();
+    return new_copy;
+}
+individual = { id: "57", name: "Bob", occupation: "Fry Cook", age: "19" }
+
+console.log("Printing orginal object", individual)
+ const new_person = copyObject(individual);
+console.log("printing copy object",new_person);
